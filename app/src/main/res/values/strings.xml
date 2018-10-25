@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Employee Management</string>
+    <string name="title_activity_detail__des">Detail_Des</string>
+</resources>
