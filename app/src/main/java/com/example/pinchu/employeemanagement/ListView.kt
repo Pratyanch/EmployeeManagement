@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.Button
+import android.widget.ListView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_list_view.*
 import kotlinx.android.synthetic.main.employee_description.view.*
@@ -25,17 +26,15 @@ class ListView : AppCompatActivity() {
         empList.add(Employee("raj", "4518", "delhi", "computer", false, R.drawable.male2))
         empList.add(Employee("raman", "4517", "bangalore", "account", false, R.drawable.mohawk))
 
-        var listie = findViewById<android.widget.ListView>(R.id.listview)
-        var lv = findViewById<Button>(R.id.btnAdd)
-        listie.adapter = MyAdapter(this, empList)
+        lvAdapter()
 
         if(intent != null && intent.extras != null) {
             val bundle = intent.extras as Bundle
-            var newName = bundle.getString("name")
-            var newID = bundle.getString("id")
-            var newDept = bundle.getString("dept")
-            var newAddress = bundle.getString("address")
-            var newManager = bundle.getBoolean("manager")
+            val newName = bundle.getString("name")
+            val newID = bundle.getString("id")
+            val newDept = bundle.getString("dept")
+            val newAddress = bundle.getString("address")
+            val newManager = bundle.getBoolean("manager")
             empList.add(Employee(newName!!.toString(), newID!!.toString(), newAddress!!.toString(), newDept!!.toString(), newManager, R.drawable.sardar))
         }
 
@@ -69,6 +68,11 @@ class ListView : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun lvAdapter() {
+        var listie = findViewById<ListView>(R.id.listview)
+        listie.adapter = MyAdapter(this, empList)
     }
 
 }
